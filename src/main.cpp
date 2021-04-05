@@ -1,10 +1,41 @@
-// Copyright 2021
+#include "Cage.h"
 #include <iostream>
-#include <string>
 
-#include "train.h"
+int calculate_len(Cage *start);
+void come_back(Cage *start, size_t steps);
 
 int main() {
-  return 0;
+	//srand(time(NULL));
+	Train train;
+	std::cout << calculate_len(train.first) << std::endl;
+
+	return 0;
 }
 
+int calculate_len(Cage *start) {
+	start->off();
+	size_t counter = 0; // счётчик шагов
+	size_t answer = 0;
+	while (true) {
+		if (start->get())
+			break;
+		start = start->next; counter++;
+		while (!start->get())
+		{
+			start = start->next;
+			counter++;
+		}
+		start->on();
+		come_back(start, counter);
+		answer = counter;
+		counter = 0;
+	}
+	return answer;
+}
+
+void come_back(Cage *start, size_t steps) {
+	for (size_t i = 0; i < steps; i++)
+	{
+		start = start->prev;
+	}
+}
