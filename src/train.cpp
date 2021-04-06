@@ -1,4 +1,4 @@
-#include "Train.h"
+#include "train.h"
 
 int calculate_len(Cage* start) {
 	start->off();
