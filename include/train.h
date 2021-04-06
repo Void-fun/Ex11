@@ -2,6 +2,18 @@
 #ifndef TRAIN_H
 #define TRAIN_H
 
+class Cage
+{
+    bool light; // Свет (вкл/выкл)
+public:
+    Cage* next; // следующий вагон
+    Cage* prev; // предыдущий вагон
+    Cage() : light(false), next(nullptr), prev(nullptr) {}
+    void on() { light = true; }
+    void off() { light = false; }
+    bool get() const { return light; }
+};
+
 class Train
 {
 public:
@@ -11,7 +23,6 @@ public:
 
     void setlen(int len) {
         this->length = len;
-        delete[] arr;
         arr = new Cage[this->length];
     }
     Train(int len) {
@@ -23,18 +34,6 @@ public:
         }
     }
 
-};
-
-class Cage
-{
-    bool light; // Свет (вкл/выкл)
-public:
-    Cage* next; // следующий вагон
-    Cage* prev; // предыдущий вагон
-    Cage() : light(false), next(nullptr), prev(nullptr) {}
-    void on() { light = true; }
-    void off() { light = false; }
-    bool get() const { return light; }
 };
 
 int calculate_len(Cage* start);
