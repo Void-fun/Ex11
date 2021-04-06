@@ -1,43 +1,51 @@
-// Copyright 2021 asma
+ï»¿// Copyright 2021 asma
 #pragma once
 #ifndef TRAIN_H
 #define TRAIN_H
-
+#include <cstdlib>
+#include <ctime>
 class Cage
 {
-    bool light; // Ñâåò (âêë/âûêë)
+    bool light; // Ã‘Ã¢Ã¥Ã² (Ã¢ÃªÃ«/Ã¢Ã»ÃªÃ«)
 public:
-    Cage* next; // ñëåäóþùèé âàãîí
-    Cage* prev; // ïðåäûäóùèé âàãîí
+    Cage* next; // Ã±Ã«Ã¥Ã¤Ã³Ã¾Ã¹Ã¨Ã© Ã¢Ã Ã£Ã®Ã­
+    Cage* prev; // Ã¯Ã°Ã¥Ã¤Ã»Ã¤Ã³Ã¹Ã¨Ã© Ã¢Ã Ã£Ã®Ã­
     Cage() : light(false), next(nullptr), prev(nullptr) {}
     void on() { light = true; }
     void off() { light = false; }
     bool get() const { return light; }
 };
-
 class Train
 {
 public:
     int length;
     Cage* arr;
-    Cage* first = arr; // óêàçàòåëü íà ïåðâûé âàãîí
-
+    Cage* first; // Ã³ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¼ Ã­Ã  Ã¯Ã¥Ã°Ã¢Ã»Ã© Ã¢Ã Ã£Ã®Ã­
     void setlen(int len) {
         this->length = len;
         arr = new Cage[this->length];
+        first = arr;
     }
     Train(int len) {
         this->setlen(len);
-        for (int i = 0; i < this->length; i++)
+        arr[0].next = &arr[1];
+        arr[0].prev = &arr[this->length - 1];
+        arr[this->length - 1].next = &arr[0];
+        arr[this->length - 1].prev = &arr[this->length - 2];
+
+        for (int i = 1; i < this->length - 1; i++)
         {
+            bool light = rand() % 2;
+            if (light)
+                arr[i].on();
+            else
+                arr[i].off();
+
             arr[i].next = &arr[(i + 1) % this->length];
-            arr[i].prev = &arr[(length + i - 1) % this->length];
+            arr[i].prev = &arr[(this->length + i - 1) % this->length];
         }
     }
-
 };
-
 int calculate_len(Cage* start);
-void come_back(Cage* start, int steps);
+Cage* come_back(Cage* start, int steps);
 #endif // !TRAIN_H
-
