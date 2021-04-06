@@ -5,7 +5,7 @@
 class Train
 {
 public:
-    int length;
+    int length; //
     Cage* arr;
     Cage* first = arr; // указатель на первый вагон
 
