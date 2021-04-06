@@ -1,5 +1,6 @@
 // Copyright 2021 asma
 #include <gtest/gtest.h>
+#include <string>
 #include "train.h"
 
 TEST(Train, test1) {
