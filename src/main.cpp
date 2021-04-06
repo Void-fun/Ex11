@@ -1,3 +1,4 @@
+// Copyright 2021 asma
 #include "train.h"
 #include <iostream>
 

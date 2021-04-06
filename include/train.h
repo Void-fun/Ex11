@@ -1,3 +1,4 @@
+// Copyright 2021 asma
 #pragma once
 #ifndef TRAIN_H
 #define TRAIN_H
