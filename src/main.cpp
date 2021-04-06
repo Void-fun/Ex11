@@ -1,4 +1,4 @@
-#include "Cage.h"
+#include "Train.h"
 #include <iostream>
 
 int calculate_len(Cage *start);
@@ -6,8 +6,9 @@ void come_back(Cage *start, size_t steps);
 
 int main() {
 	//srand(time(NULL));
-	Train train;
-	std::cout << calculate_len(train.first) << std::endl;
+	size_t len = 20;
+	Train train(len);
+	std::cout << calculate_len(train.first) << len << std::endl;
 
 	return 0;
 }
